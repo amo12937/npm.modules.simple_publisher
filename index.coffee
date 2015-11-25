@@ -1,6 +1,6 @@
 "use strict"
 
-exports.create =
+exports.create = ->
   listeners = {}
   publishing = {}
 
