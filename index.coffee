@@ -1,19 +1,26 @@
 "use strict"
 
-exports.create = ->
-  listeners = {}
-  publishing = {}
+class SimplePublisher
+  constructor: ->
+    @_listeners = {}
+    @_publishing = {}
 
   register: (ev, listener) ->
-    listeners[ev] ?= []
-    return if listener in listeners[ev]
-    listeners[ev].push listener
+    @_listeners[ev] ?= []
+    return if listener in @_listeners[ev]
+    @_listeners[ev].push listener
+    self = @
     return ->
-      i = listeners[ev].indexOf listener
-      listeners[ev].splice i, 1 if i >= 0
+      i = self._listeners[ev].indexOf listener
+      self._listeners[ev].splice i, 1 if i>= 0
+
   publish: (ev, args...) ->
-    return if publishing[ev]
-    publishing[ev] = true
-    listener.apply undefined, args for listener in listeners[ev] or []
-    publishing[ev] = false
+    return if @_publishing[ev]
+    @_publishing[ev] = true
+    listener.apply undefined, args for listener in @_listeners[ev] or []
+    @_publishing[ev] = false
+
+SimplePublisher.create = -> new SimplePublisher
+
+module.exports = SimplePublisher
 

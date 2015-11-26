@@ -4,6 +4,8 @@ Observer パターンのシンプルな実装
 
 ## インストール
 
+https://www.npmjs.com/package/amo.modules.simple_publisher
+
 ```
 npm install --save-dev amo.modules.simple_publisher
 ```
