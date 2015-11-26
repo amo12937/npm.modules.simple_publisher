@@ -1,6 +1,6 @@
 "use strict"
 
-class SimplePublisher
+module.exports = class SimplePublisher
   constructor: ->
     @_listeners = {}
     @_publishing = {}
@@ -20,7 +20,5 @@ class SimplePublisher
     listener.apply undefined, args for listener in @_listeners[ev] or []
     @_publishing[ev] = false
 
-SimplePublisher.create = -> new SimplePublisher
-
-module.exports = SimplePublisher
-
+SimplePublisher.create = ->
+  new (Function.prototype.bind.apply @, [@, arguments...])

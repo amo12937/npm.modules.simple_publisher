@@ -74,3 +74,11 @@ describe "SimplePublisher", ->
         obj.register ev, listener
         expect(obj.register ev, listener).to.be.equal undefined
 
+  describe "when creating extended class", ->
+    it "SimplePublisher should be SimplePublisher", ->
+      expect(SimplePublisher.create()).to.be.an.instanceof SimplePublisher
+
+    it "Subclass should be Subclass", ->
+      class Subclass extends SimplePublisher
+      expect(Subclass.create()).to.be.an.instanceof Subclass
+
