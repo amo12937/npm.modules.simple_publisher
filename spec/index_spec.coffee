@@ -7,8 +7,12 @@ sinonChai = require "sinon-chai"
 chai.use sinonChai
 
 SimplePublisher = require "index"
+Base = require "amo.modules.base"
 
 describe "SimplePublisher", ->
+  it "should be subclass of amo.modules.Base", ->
+    expect(SimplePublisher.__super__).to.be.equal Base.prototype
+
   it "should have create property", ->
     expect(SimplePublisher).to.have.property "create"
 
@@ -73,12 +77,4 @@ describe "SimplePublisher", ->
         listener = -> undefined
         obj.register ev, listener
         expect(obj.register ev, listener).to.be.equal undefined
-
-  describe "when creating extended class", ->
-    it "SimplePublisher should be SimplePublisher", ->
-      expect(SimplePublisher.create()).to.be.an.instanceof SimplePublisher
-
-    it "Subclass should be Subclass", ->
-      class Subclass extends SimplePublisher
-      expect(Subclass.create()).to.be.an.instanceof Subclass
 

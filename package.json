@@ -1,6 +1,6 @@
 {
   "name": "amo.modules.simple_publisher",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Observer パターンのシンプルな実装",
   "main": "index.coffee",
   "scripts": {
@@ -22,5 +22,8 @@
     "mocha": "^2.3.4",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.8.0"
+  },
+  "dependencies": {
+    "amo.modules.base": "^1.0.0"
   }
 }

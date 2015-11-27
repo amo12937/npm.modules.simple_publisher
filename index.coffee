@@ -1,6 +1,6 @@
 "use strict"
 
-module.exports = class SimplePublisher
+module.exports = class SimplePublisher extends require "amo.modules.base"
   constructor: ->
     @_listeners = {}
     @_publishing = {}
@@ -19,6 +19,3 @@ module.exports = class SimplePublisher
     @_publishing[ev] = true
     listener.apply undefined, args for listener in @_listeners[ev] or []
     @_publishing[ev] = false
-
-SimplePublisher.create = ->
-  new (Function.prototype.bind.apply @, [@, arguments...])
